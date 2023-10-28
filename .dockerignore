@@ -1,0 +1,8 @@
+data/main.db
+*__pycahce__*
+.git*
+docker_run.sh
+*log.txt
+test.py
+.idea
+config/.env

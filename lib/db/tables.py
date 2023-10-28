@@ -1,11 +1,7 @@
-import os
-import sys
 import logging
-from sqlalchemy import create_engine, Column, Integer, String, DateTime, Float, BOOLEAN
+from sqlalchemy import create_engine, Column, Integer, String, DateTime 
 from sqlalchemy_utils import database_exists, create_database
 from sqlalchemy.ext.declarative import declarative_base
-
-import lib.utils as ut
 
 logger = logging.getLogger(__name__)
 
@@ -39,8 +35,14 @@ replacement:
         return text
 
 
-def get_engine(postgre_password: str, postgre_port:str, postgre_host:str):
-    url = f'postgresql+psycopg2://postgres:{postgre_password}@{postgre_host}:{postgre_port}/emotion_bot'
+# def get_engine(postgre_password: str, postgre_port:str, postgre_host:str):
+#     url = f'postgresql+psycopg2://postgres:{postgre_password}@{postgre_host}:{postgre_port}/emotion_bot'
+#     engine = create_engine(url)
+#     return engine
+
+
+def get_engine():
+    url = f"sqlite:///data/main.db"
     engine = create_engine(url)
     return engine
 
@@ -52,6 +54,3 @@ def create_data_base_and_tables(engine):
         logger.info(f"database was created, url={engine.url}")
     Base.metadata.create_all(engine)
 
-
-if __name__ == '__main__':
-    create_data_base_and_tables()
